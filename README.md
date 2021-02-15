@@ -15,7 +15,7 @@ DB_PASSWORD= `your password`
 launch the command line:  
 `php artisan migrate`  
 
-Для тестирования на локальном сервере выполните в консоли  
+Для тестирования на локальном и запуска приложения сервере выполните в консоли  
 `php artisan serve`  
   
 
