@@ -2,42 +2,37 @@
 
 namespace App\Http\Controllers;
 
-use App\Guest;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Artisan;
+use App\Facades\GuestService;
+use App\Http\Requests\MakeSeedRequest;
+use App\Http\Requests\StoreGUestRequest;
 
 class HomeController extends Controller
 {
 
     public function index()
     {
-        $guest = Guest::latest()->paginate(5);
+        $guest = GuestService::getIndex();
         return view('home', compact('guest'));
     }
 
 
-    public function makeFactory(Request $request)
+    public function makeFactory(MakeSeedRequest $request)
     {
-        $request->validate(['quantity' => 'required|numeric|max:250']);
-        Guest::seedDB($request->quantity);
+        GuestService::seedDB($request->validated()['quantity']);
         return redirect()->back();
     }
 
 
     public function refreshDB()
     {
-        Artisan::call('migrate:refresh');
+        GuestService::refreshDataBase();
         return redirect()->back();
     }
 
 
-    public function store(Request $request)
+    public function store(StoreGUestRequest $request)
     {
-        $request->validate([
-            'email' => 'required|string|email|max:250|unique:guests',
-            'text' => 'required|string|max:2000'
-        ]);
-        Guest::add($request->all());
+        GuestService::storeGuest($request->validated());
         return redirect()->back();
     }
 
