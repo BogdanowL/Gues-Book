@@ -9,7 +9,11 @@
                 <form action="{{route('factory')}}" method="POST">
                     @csrf
                     <div class="form-group">
+<<<<<<< HEAD
                         <label for="count"> <h4>Введите количество записей для посева в базу данных</h4> </label>
+=======
+                        <label for="count"><h4>Введите количество записей для посева в базу данных</h4></label>
+>>>>>>> dbde0e324b9cbea682da1fd8a1eba61ee75cdcd6
                         <input  name="quantity" type="text" class="form-control" id="count">
 
                     </div>
